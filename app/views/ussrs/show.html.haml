@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @ussr.name
+%p
+  %b Password digest:
+  = @ussr.password_digest
+
+= link_to 'Edit', edit_ussr_path(@ussr)
+\|
+= link_to 'Back', ussrs_path

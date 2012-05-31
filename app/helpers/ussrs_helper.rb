@@ -1,0 +1,2 @@
+module UssrsHelper
+end

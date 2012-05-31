@@ -3,18 +3,17 @@
   %head
     %title Pragprog Books Online Store
     = stylesheet_link_tag "application"
-    / <label id="code.slt"/>
     = javascript_include_tag "application"
-    / <label id="code.jlt"/>
     = csrf_meta_tag
-    / <label id="code.csrf"/>
   %body{:class => controller.controller_name}
     #banner
       = image_tag("logo.png")
       = @page_title || "Pragmatic Bookshelf"
-      / <label id="code.depot.e.title"/>
     #columns
       #side
+        - if @cart
+          = hidden_div_if(@cart.line_items.empty?, id: 'cart') do
+            = render @cart
         %ul
           %li
             %a{:href => "http://www...."} Home
@@ -24,6 +23,11 @@
             %a{:href => "http://www..../news"} News
           %li
             %a{:href => "http://www..../contact"} Contact
+        - if session[:user_id]
+          %ul
+            %li= link_to 'Orders', orders_path
+            %li= link_to 'Products', products_path
+            %li= link_to 'Users', users_path
+          = button_to 'Logout', logout_path, method: :delete
       #main
         = yield
-        / <label id="code.depot.e.include"/>

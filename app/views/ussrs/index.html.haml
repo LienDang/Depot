@@ -1,0 +1,23 @@
+%h1 Listing ussrs
+- if notice
+  %p#notice= notice
+
+%table
+  %tr
+    %th Name
+    %th Password digest
+    %th
+    %th
+    %th
+
+  - @ussrs.each do |ussr|
+    %tr
+      %td= ussr.name
+      %td= ussr.password_digest
+      %td= link_to 'Show', ussr
+      %td= link_to 'Edit', edit_ussr_path(ussr)
+      %td= link_to 'Destroy', ussr, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Ussr', new_ussr_path
